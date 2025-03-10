@@ -75,22 +75,8 @@ namespace RezervacijeAlat.Controllers
 
             _context.Entry(reservation).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ToolReservationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await _context.SaveChangesAsync();
+           
             return Ok("Reservation changed");
         }
 
